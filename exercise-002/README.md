@@ -115,11 +115,28 @@ Nutzen Sie die vorhandene Funktion `doSomethingStatic()` in `module.cpp`.
 1. Führen Sie das Programm aus und beobachten Sie die Ausgabe von `doSomethingStatic()`.
 2. Erweitern Sie die Funktion so, dass zusätzlich die Adresse der statischen Variablen ausgegeben wird.
 3. Rufen Sie `doSomethingStatic()` mehrfach auf und beantworten Sie:
-   - Bleibt die Adresse konstant?
-   - Warum wird der Wert bei jedem Aufruf weiter erhöht?
-4. Vergleichen Sie das Verhalten mit einer **nicht-statischen** lokalen Variable in derselben Funktion.
+   - Bleibt die Adresse konstant? -> Ja, sie bleibt konstant.
+   - Warum wird der Wert bei jedem Aufruf weiter erhöht? Da static die Variable auch nach dem Ende der Funktion weiter speichert.
+4. Vergleichen Sie das Verhalten mit einer **nicht-statischen** lokalen Variable in derselben Funktion. -> Beide behalten ihre Adresse, aber die Static wird erhöht und die non-static nicht.
 
 **Ziel:** Verstehen, dass eine `static`-lokale Variable nur einmal initialisiert wird und zwischen Funktionsaufrufen ihren Zustand behält.
+
+Chat Review of answer:
+**3. Beobachtungen**
+
+- **Bleibt die Adresse konstant?**  
+  Ja, die Adresse der statischen Variable bleibt bei jedem Funktionsaufruf konstant.
+
+- **Warum wird der Wert bei jedem Aufruf weiter erhöht?**  
+  Eine statische lokale Variable wird nur einmal initialisiert und behält ihren Wert auch nach dem Ende des Funktionsaufrufs. Deshalb wird bei jedem weiteren Aufruf der vorherige Wert um 1 erhöht.
+
+**4. Vergleich mit einer nicht-statischen lokalen Variable**
+
+Die statische Variable behält ihren Wert zwischen den Funktionsaufrufen und wird deshalb jedes Mal weiter erhöht.
+
+Die nicht-statische Variable wird dagegen bei jedem Funktionsaufruf neu mit 56 initialisiert und anschließend auf 57 erhöht.
+
+Die Adresse der nicht-statischen Variable kann bei mehreren Aufrufen gleich bleiben, weil derselbe Speicherplatz wiederverwendet werden kann. Im Gegensatz zur statischen Variable ist dies jedoch nicht garantiert.
 
 ---
 

@@ -17,16 +17,36 @@ const int rodata2 = 43;
 
 const int big_data_blob[] = {42,0xff};
 
+/* CODE */
+static int moduleCounter;
+static int moduleValue = 123;
+
+void printTwoValues(){
+    printValueAndAddress("moduleCounter", &moduleCounter);
+    printValueAndAddress("moduleValue", &moduleValue);
+}
+
+void printValueAndAddress(const char* name, int* value)
+{
+    fmt::print("[printValueAndAddress] {} = {}, address = {}\n",
+               name,
+               *value,
+               fmt::ptr(value));
+}
+/* END CODE */
+
 void doSomething(int value)
 {
     value = value + 1;
     fmt::print("doSomething, value {}\n", value);
+    fmt::print("doSomethingStatic, address of value {}\n", fmt::ptr(&value));
 }
 
 void doSomethingPtr(int* ptr)
 {
     *ptr = *ptr + 1;
     fmt::print("doSomethingPtr, value {}\n", *ptr);
+    /* fmt::print("doSomethingStatic, address of value {}\n", fmt::ptr(*ptr));*/
 }
 
 int* doReturnAPtr()
@@ -44,5 +64,11 @@ void doSomethingStatic()
 {
     static int value = 56;
     value = value + 1;
-    fmt::print("doSomethingStatic, value {}\n", value);
+    fmt::print("[doSomethingStatic] Value {}\n", value);
+    fmt::print("[doSomethingStatic] Address of value {}\n", fmt::ptr(&value));
+    
+    int nonStaticValue = 56;
+    nonStaticValue = nonStaticValue + 1;
+    fmt::print("[doSomethingStatic] nonStaticValue {}\n", nonStaticValue);
+    fmt::print("[doSomethingStatic] Address of nonStaticValue {}\n", fmt::ptr(&nonStaticValue));
 }

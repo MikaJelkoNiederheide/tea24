@@ -19,6 +19,8 @@ int* doReturnAPtr();
 
 void doSomethingStatic();
 
+void printValueAndAddress(const char* name, int* value);
 
+void printTwoValues();
 
 #endif

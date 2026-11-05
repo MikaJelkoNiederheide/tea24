@@ -3,6 +3,8 @@
 
 #include "module.h"
 
+extern int moduleCounter;
+
 auto main(int argc, char** argv) -> int
 {
     /**
@@ -49,6 +51,15 @@ auto main(int argc, char** argv) -> int
 
     fmt::print("array_ptr[0] {}\n", array_ptr[0]);
     fmt::print("big_data_blob[0] {}\n", big_data_blob[0]);
+
+    printTwoValues();
+
+    /* Variables not visible in main.cpp due to non-declaration in module.h.
+    fmt::print(moduleCounter);
+    fmt::print(moduleValue);
+    
+    fmt::print("{}\n", moduleCounter); -> undefined reference to `moduleCounter'; even with extern declaration
+    */
 
     return 0; /* exit gracefully*/
 }
